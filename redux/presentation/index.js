@@ -11,6 +11,7 @@ import {
   Fill,
   Deck,
   Heading,
+  Layout,
   ListItem,
   List,
   Quote,
@@ -109,6 +110,11 @@ export default class Presentation extends React.Component {
             { loc: [11, 19], note: "and return a new state for each one" }
           ]}
         />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>Real Word Example</Heading>
+          <br />
+          <iframe src="http://localhost:3000" height={600} width={1000} style={{backgroundColor: "white"}}/>
+        </Slide>
       </Deck>
     );
   }
