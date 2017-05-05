@@ -1,5 +1,6 @@
 // Import React
 import React from "react";
+import CodeSlide from 'spectacle-code-slide';
 
 // Import Spectacle Core tags
 import {
@@ -81,20 +82,33 @@ export default class Presentation extends React.Component {
           <Heading size={4} textColor="primary" caps>Single source of truth</Heading>
           <Heading size={7} textColor="secondary">The state of your whole application is stored in an object tree within a single store.</Heading>
           <br /><br />
-          <CodePane lang="javascript" source={require("raw-loader!./code/core-store1.js")} textSize={20} />
+          <CodePane lang="javascript" source={require("raw-loader!../assets/code/core-store1.example")} textSize={20} />
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>State is read-only</Heading>
           <Heading size={7} textColor="secondary">The only way to change the state is to emit an action, an object describing what happened.</Heading>
           <br /><br />
-          <CodePane lang="javascript" source={require("raw-loader!./code/core-store2.js")} textSize={20} />
+          <CodePane lang="javascript" source={require("raw-loader!../assets/code/core-store2.example")} textSize={20} />
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Changes are made with pure functions</Heading>
           <Heading size={7} textColor="secondary">To specify how the state tree is transformed by actions, you write pure reducers.</Heading>
-          <br /><br />
-          <Fill><CodePane lang="javascript" source={require("raw-loader!./code/core-store3.js")} textSize={20} /></Fill>
         </Slide>
+        <CodeSlide
+          textSize={30}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/core-store3.example")}
+          ranges={[
+            { loc: [0, 0], title: "Reducers" },
+            { loc: [0, 1]},
+            { loc: [9, 10], note: "take the previous state and an action..." },
+            { loc: [10, 11] },
+            { loc: [11, 12] },
+            { loc: [19, 20], note: "handle differents action type..." },
+            { loc: [11, 19], note: "and return a new state for each one" }
+          ]}
+        />
       </Deck>
     );
   }
