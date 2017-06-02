@@ -16,6 +16,7 @@ import {
   List,
   Quote,
   Slide,
+  S,
   Text
 } from "spectacle";
 
@@ -63,7 +64,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Why ?</Heading>
-          <Heading size={3} textColor="secondary">From scrippting to SPA</Heading>
+          <Heading size={3} textColor="secondary">From scripting to SPA</Heading>
           <List Fill>
             <ListItem>manage more state than ever</ListItem>
             <ListItem>lost control over the when, why, and how state is updated</ListItem>
@@ -111,9 +112,117 @@ export default class Presentation extends React.Component {
           ]}
         />
         <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>Basic Example</Heading>
+          <br />
+          <iframe src="http://localhost:3000" height={600} width={1000} style={{backgroundColor: "white"}}/>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Real Word Example</Heading>
           <br />
           <iframe src="http://localhost:3000" height={600} width={1000} style={{backgroundColor: "white"}}/>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary" textColor="primary">
+          <Heading textColor="secondary" caps>Advanced Redux</Heading>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>The Selector pattern</Heading>
+        </Slide>
+        <CodeSlide
+          textSize={25}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/selector-pattern1.example")}
+          ranges={[
+            { loc: [0, 0], title: "Without selector" },
+            { loc: [0, 8], note: "Imagine we have a reducer to control a list of items"},
+            { loc: [8, 14], note: "Where Items looks like this"},
+            { loc: [15, 22], note: "Today we mapStateToProps for all incomplete items like this"}
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>The problem with this approach</Heading>
+          <Text margin="40px 0 0" textSize={30}>
+            •  The implementation of <S type="italic">incompleteItems</S> may change.
+          </Text><br />
+          <Text textSize={30}>
+            •  Computation logic occurs in <S type="italic">mapStateToProps</S>
+          </Text><br />
+          <Text textSize={30}>
+              •  Can't memoize the values of <S type="italic">incompleteItems</S>
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>The solution</Heading>
+          <Heading size={3} textColor="secondary">What is a selector ?</Heading>
+          <Text margin="40px 0 0" textSize={30}>
+            •  Selectors can compute derived data, allowing Redux to store the minimal possible state.
+          </Text><br />
+          <Text textSize={30}>
+            •  Selectors are composable. They can be used as input to other selectors.
+          </Text><br />
+          <Text textSize={30}>
+              • Selectors are your “reading API” and should be co-located with their reducers
+          </Text>
+        </Slide>
+        <CodeSlide
+          textSize={25}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/selector-pattern2.example")}
+          ranges={[
+            { loc: [0, 0], title: "With selector" },
+            { loc: [0, 14], note: "Colocating Selectors with Reducers"},
+            { loc: [15, 20], note: "And we update our mapStateToProps function"},
+            { loc: [15, 20], note: "Now we can reuse this logic across many components mapping this exact state! We can unit test it as well! More importantly we can now memoize this state with reselect"}
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>Normalizing State Shape</Heading>
+        </Slide>
+        <CodeSlide
+          textSize={15}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/normalizestate1.example")}
+          ranges={[
+            { loc: [0, 34]},
+            { loc: [0, 34], note: "Lots of data repetition..."}
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>The problem with this approach</Heading>
+          <Text margin="40px 0 0" textSize={30}>
+            •  When a piece of data is duplicated in several places, it becomes harder to make sure that it is updated appropriately
+          </Text><br />
+          <Text textSize={30}>
+            •  Nested data means that the corresponding reducer logic has to be more nested or more complex
+          </Text><br />
+          <Text textSize={30}>
+              • Not compliant with immutable data updates that require all ancestors in the state tree to be copied and updated as well
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>Managing Side Effects</Heading>
+          <List Fill>
+            <ListItem>functions (redux-thunk)</ListItem>
+            <ListItem>promises </ListItem>
+            <ListItem>generators (redux-saga)</ListItem>
+            <ListItem>observables (RxJS)</ListItem>
+            <ListItem>...</ListItem>
+          </List>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>Redux-Thunk</Heading>
+          <List>
+            <ListItem>Action creators can return a function instead of an action</ListItem>
+            <ListItem>Can be used to delay the dispatch of an action</ListItem>
+            <ListItem>The inner function receives the store methods dispatch and getState as parameters.</ListItem>
+          </List>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>Redux-Saga</Heading>
+          <Heading size={7} textColor="secondary"></Heading>
+          <br /><br />
         </Slide>
       </Deck>
     );

@@ -1,0 +1,20 @@
+function listOfItems(state = [], action = {}){
+  switch(action.type) {
+    case 'SHOW_ALL_ITEMS':
+      return action.data.items
+    default:
+      return state;
+  }
+}
+
+function getIncompleteItems(state){
+  return state.listOfItems.filter((item) => {
+    return !item.completed
+  });
+}
+
+function mapStateToProps(state) {
+  return {
+    incompleteItems: getIncompleteItems(state)
+  }
+}
