@@ -105,8 +105,8 @@ export default class Presentation extends React.Component {
             { loc: [0, 0], title: "Reducers" },
             { loc: [0, 1]},
             { loc: [9, 10], note: "take the previous state and an action..." },
-            { loc: [10, 11] },
-            { loc: [11, 12] },
+            { loc: [10, 11]},
+            { loc: [11, 12]},
             { loc: [19, 20], note: "handle differents action type..." },
             { loc: [11, 19], note: "and return a new state for each one" }
           ]}
@@ -153,7 +153,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>The solution</Heading>
-          <Heading size={3} textColor="secondary">What is a selector ?</Heading>
+          <Heading size={3} textColor="secondary">Selectors</Heading>
           <Text margin="40px 0 0" textSize={30}>
             •  Selectors can compute derived data, allowing Redux to store the minimal possible state.
           </Text><br />
@@ -199,6 +199,53 @@ export default class Presentation extends React.Component {
           </Text><br />
           <Text textSize={30}>
               • Not compliant with immutable data updates that require all ancestors in the state tree to be copied and updated as well
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+          <BlockQuote>
+            <Quote><Text textColor="primary">The recommended approach to managing relational or nested data in a Redux store is to treat a portion of your store as if it were a database, and keep that data in a normalized form.</Text></Quote>
+            <Cite>Dan Abramov - co-creator of Redux</Cite>
+          </BlockQuote>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>The solution</Heading>
+          <Heading size={3} textColor="secondary">Normalizing data</Heading>
+          <Text margin="40px 0 0" textSize={30}>
+            •  Each type of data gets its own "table" in the state
+          </Text><br />
+          <Text textSize={30}>
+            •  Each "data table" should store the individual items in an object, with the IDs of the items as keys and the items themselves as the values
+          </Text><br />
+          <Text textSize={30}>
+              • Any references to individual items should be done by storing the item's ID
+          </Text><br />
+          <Text textSize={30}>
+              • Arrays of IDs should be used to indicate ordering.
+          </Text>
+        </Slide>
+        <CodeSlide
+          textSize={15}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/normalizestate2.example")}
+          ranges={[
+            { loc: [0, 34]},
+            { loc: [0, 34], note: "An example of a normalized state structure"}
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Benefits</Heading>
+          <Text margin="40px 0 0" textSize={30}>
+            •  Because each item is only defined in one place, we don't have to try to make changes in multiple places if that item is updated
+          </Text><br />
+          <Text textSize={30}>
+            •  The reducer logic doesn't have to deal with deep levels of nesting, so it will probably be much simpler
+          </Text><br />
+          <Text textSize={30}>
+              • Any references to individual items should be done by storing the item's IDThe logic for retrieving or updating a given item is now fairly simple and consistent. Given an item's type and its ID, we can directly look it up in a couple simple steps, without having to dig through other objects to find it
+          </Text><br />
+          <Text textSize={30}>
+              • Since each data type is separated, an update like changing the text of a comment would only require new copies of the "comments > byId > comment" portion of the tree
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
