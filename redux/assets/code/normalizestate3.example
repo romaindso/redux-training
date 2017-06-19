@@ -1,0 +1,12 @@
+{
+    simpleDomainData1: {....},
+    simpleDomainData2: {....}
+    entities : {
+        entityType1 : {....},
+        entityType2 : {....}
+    }
+    ui : {
+        uiSection1 : {....},
+        uiSection2 : {....}
+    }
+}

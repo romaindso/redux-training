@@ -1,0 +1,26 @@
+{
+    entities: {
+        authors : { byId : {}, allIds : [] },
+        books : { byId : {}, allIds : [] },
+        authorBook : {
+            byId : {
+                1 : {
+                    id : 1,
+                    authorId : 5,
+                    bookId : 22
+                },
+                2 : {
+                    id : 2,
+                    authorId : 5,
+                    bookId : 15,
+                }
+                3 : {
+                    id : 3,
+                    authorId : 42,
+                    bookId : 12
+                }
+            },
+            allIds : [1, 2, 3]
+        }
+    }
+}

@@ -154,13 +154,13 @@ export default class Presentation extends React.Component {
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>The solution</Heading>
           <Heading size={3} textColor="secondary">Selectors</Heading>
-          <Text margin="40px 0 0" textSize={30}>
+          <Text margin="40px 0 0" textSize={30} textAlign="left">
             •  Selectors can compute derived data, allowing Redux to store the minimal possible state.
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={30} textAlign="left">
             •  Selectors are composable. They can be used as input to other selectors.
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={30} textAlign="left">
               • Selectors are your “reading API” and should be co-located with their reducers
           </Text>
         </Slide>
@@ -191,13 +191,13 @@ export default class Presentation extends React.Component {
         />
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>The problem with this approach</Heading>
-          <Text margin="40px 0 0" textSize={30}>
+          <Text margin="40px 0 0" textSize={30} textAlign="left">
             •  When a piece of data is duplicated in several places, it becomes harder to make sure that it is updated appropriately
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={30} textAlign="left">
             •  Nested data means that the corresponding reducer logic has to be more nested or more complex
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={30} textAlign="left">
               • Not compliant with immutable data updates that require all ancestors in the state tree to be copied and updated as well
           </Text>
         </Slide>
@@ -210,16 +210,16 @@ export default class Presentation extends React.Component {
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>The solution</Heading>
           <Heading size={3} textColor="secondary">Normalizing data</Heading>
-          <Text margin="40px 0 0" textSize={30}>
+          <Text margin="40px 0 0" textSize={30} textAlign="left">
             •  Each type of data gets its own "table" in the state
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={30} textAlign="left">
             •  Each "data table" should store the individual items in an object, with the IDs of the items as keys and the items themselves as the values
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={30} textAlign="left">
               • Any references to individual items should be done by storing the item's ID
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={30} textAlign="left">
               • Arrays of IDs should be used to indicate ordering.
           </Text>
         </Slide>
@@ -235,17 +235,80 @@ export default class Presentation extends React.Component {
         />
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Benefits</Heading>
-          <Text margin="40px 0 0" textSize={30}>
-            •  Because each item is only defined in one place, we don't have to try to make changes in multiple places if that item is updated
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Because each item is only defined in one place, we don't have to make changes in multiple places if that item is updated
           </Text><br />
-          <Text textSize={30}>
-            •  The reducer logic doesn't have to deal with deep levels of nesting, so it will probably be much simpler
+          <Text textSize={25} textAlign="left">
+            •  The reducer logic doesn't have to deal with deep levels of nesting, so it will be much simpler
           </Text><br />
-          <Text textSize={30}>
-              • Any references to individual items should be done by storing the item's IDThe logic for retrieving or updating a given item is now fairly simple and consistent. Given an item's type and its ID, we can directly look it up in a couple simple steps, without having to dig through other objects to find it
+          <Text textSize={25} textAlign="left">
+              • Any references to individual items should be done by storing the item's ID
           </Text><br />
-          <Text textSize={30}>
+          <Text textSize={25} textAlign="left">
+              • The logic for retrieving/updating a given item is now simple and consistent. Given an item's type and its ID, we can directly look it up, without having to dig through other objects to find it
+          </Text><br />
+          <Text textSize={25} textAlign="left">
               • Since each data type is separated, an update like changing the text of a comment would only require new copies of the "comments > byId > comment" portion of the tree
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Text textSize={30} textAlign="left">
+              • tp sans normalizr
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Organizing Normalized Data in State</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  A typical application will likely have a mixture of relational data and non-relational data
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •   One common pattern is to put the relational "tables" under a common parent key, such as "entities"
+          </Text><br />
+        </Slide>
+        <CodeSlide
+          textSize={25}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/normalizestate3.example")}
+          ranges={[
+            { loc: [0, 12] },
+            { loc: [0, 13] }
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Relationships and Tables</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Because we're treating a portion of our Redux store as a "database", many of the principles of database design also apply here as well
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  For example, a many-to-many relationship, we can model that using an intermediate table that stores the IDs of the corresponding items (often known as a "join table" or an "associative table")
+          </Text>
+        </Slide>
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/normalizestate4.example")}
+          ranges={[
+            { loc: [0, 26] },
+            { loc: [0, 27] }
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Normalizr</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Because APIs frequently send back data in a nested form, that data needs to be transformed into a normalized shape before it can be included in the state tree
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  You can define schema types and relations, feed the schema and the response data to Normalizr, and it will output a normalized transformation of the response
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  That output can then be included in an action and used to update the store
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Text textSize={30} textAlign="left">
+              • tp avec normlizr
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
@@ -265,6 +328,11 @@ export default class Presentation extends React.Component {
             <ListItem>Can be used to delay the dispatch of an action</ListItem>
             <ListItem>The inner function receives the store methods dispatch and getState as parameters.</ListItem>
           </List>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Text textSize={30} textAlign="left">
+              • add TP
+          </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Redux-Saga</Heading>
