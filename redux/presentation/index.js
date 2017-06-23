@@ -229,7 +229,7 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require("raw-loader!../assets/code/normalizestate2.example")}
           ranges={[
-            { loc: [0, 34]},
+            { loc: [0, 34] },
             { loc: [0, 34], note: "An example of a normalized state structure"}
           ]}
         />
@@ -252,9 +252,9 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Text textSize={30} textAlign="left">
-              • tp sans normalizr
-          </Text>
+          <Heading size={6} textColor="primary" caps>Exercice</Heading>
+          <Heading size={3} textColor="secondary">Normalize state</Heading>
+          <Text textSize={30}>https://github.com/romaindso/starwars-redux/blob/tp2/src/reducers/characters.js</Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Organizing Normalized Data in State</Heading>
