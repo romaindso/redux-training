@@ -329,9 +329,23 @@ export default class Presentation extends React.Component {
             <ListItem>The inner function receives the store methods dispatch and getState as parameters.</ListItem>
           </List>
         </Slide>
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/redux-thunk.1.example")}
+          ranges={[
+            { loc: [0, 8], note: "Normal action creator" },
+            { loc: [8, 20], note: "Thunk action creator" }
+          ]}
+        />
         <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>The problem with this approach</Heading>
+          <Text margin="40px 0 0" textSize={30} textAlign="left">
+            •  Thunks are harder to test
+          </Text><br />
           <Text textSize={30} textAlign="left">
-              • add TP
+            •  Mixing actions and side effects in asynchronous action creators drastically increases complexity.
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
