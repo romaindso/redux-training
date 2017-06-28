@@ -14,6 +14,7 @@ import {
   Layout,
   ListItem,
   List,
+  Link,
   Quote,
   Slide,
   S,
@@ -177,6 +178,12 @@ export default class Presentation extends React.Component {
           ]}
         />
         <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Exercice</Heading>
+          <Heading size={3} textColor="secondary">Writing a selector</Heading>
+          <br />
+          <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp1">starwars-redux/tree/tp1</a></Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Normalizing State Shape</Heading>
         </Slide>
         <CodeSlide
@@ -253,8 +260,9 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Exercice</Heading>
-          <Heading size={3} textColor="secondary">Normalize state</Heading>
-          <Text textSize={30}>https://github.com/romaindso/starwars-redux/blob/tp2/src/reducers/characters.js</Text>
+          <Heading size={3} textColor="secondary">Normalize the state</Heading>
+          <br />
+          <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp2">starwars-redux/tree/tp2</a></Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Organizing Normalized Data in State</Heading>
@@ -307,9 +315,10 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Text textSize={30} textAlign="left">
-              • tp avec normlizr
-          </Text>
+          <Heading size={6} textColor="primary" caps>Exercice</Heading>
+          <Heading size={3} textColor="secondary">Switch to Normlizr</Heading>
+          <br />
+          <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp3">starwars-redux/tree/tp3</a></Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Managing Side Effects</Heading>
@@ -323,11 +332,15 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Redux-Thunk</Heading>
-          <List>
-            <ListItem>Action creators can return a function instead of an action</ListItem>
-            <ListItem>Can be used to delay the dispatch of an action</ListItem>
-            <ListItem>The inner function receives the store methods dispatch and getState as parameters.</ListItem>
-          </List>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Action creators can return a function instead of an action
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Can be used to delay the dispatch of an action
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  The inner function receives the store methods <S type="italic">dispatch</S> and <S type="italic">getState</S> as parameters
+          </Text>
         </Slide>
         <CodeSlide
           textSize={20}
@@ -335,12 +348,22 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require("raw-loader!../assets/code/redux-thunk.1.example")}
           ranges={[
+            { loc: [0, 0], title: "Thunks" },
             { loc: [0, 8], note: "Normal action creator" },
             { loc: [8, 20], note: "Thunk action creator" }
           ]}
         />
         <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Benefits</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Simple in both concept and implementation
+          </Text><br />
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>The problem with this approach</Heading>
+          <Text margin="40px 0 0" textSize={30} textAlign="left">
+            •  Thunks are often too coupled
+          </Text><br />
           <Text margin="40px 0 0" textSize={30} textAlign="left">
             •  Thunks are harder to test
           </Text><br />
