@@ -149,7 +149,7 @@ export default class Presentation extends React.Component {
             •  Computation logic occurs in <S type="italic">mapStateToProps</S>
           </Text><br />
           <Text textSize={30}>
-              •  Can't memoize the values of <S type="italic">incompleteItems</S>
+            •  Can't memoize the values of <S type="italic">incompleteItems</S>
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
@@ -321,17 +321,26 @@ export default class Presentation extends React.Component {
           <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp3">starwars-redux/tree/tp3</a></Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Managing Side Effects</Heading>
+          <Heading size={4} textColor="primary" caps>Side Effects</Heading>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Managing Side Effects</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+           There's a lot of ways to write and manage asynchronous logic in Javascript.
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+           There's no needs middlewares to use async logic in a Redux app, but it's the recommended approach.
+          </Text><br />
           <List Fill>
             <ListItem>functions (redux-thunk)</ListItem>
-            <ListItem>promises </ListItem>
+            <ListItem>promises (redux-promise)</ListItem>
             <ListItem>generators (redux-saga)</ListItem>
-            <ListItem>observables (RxJS)</ListItem>
+            <ListItem>observables (redux-observable)</ListItem>
             <ListItem>...</ListItem>
           </List>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Redux-Thunk</Heading>
+          <Heading size={6} textColor="primary" caps>Redux-Thunk</Heading>
           <Text margin="40px 0 0" textSize={25} textAlign="left">
             •  Action creators can return a function instead of an action
           </Text><br />
@@ -349,8 +358,8 @@ export default class Presentation extends React.Component {
           code={require("raw-loader!../assets/code/redux-thunk.1.example")}
           ranges={[
             { loc: [0, 0], title: "Thunks" },
-            { loc: [0, 8], note: "Normal action creator" },
-            { loc: [8, 20], note: "Thunk action creator" }
+            { loc: [0, 14] },
+            { loc: [15, 16], note: "To execute the login sequence we dispatch our thunk:" }
           ]}
         />
         <Slide transition={["fade"]} bgColor="tertiary">
@@ -358,23 +367,77 @@ export default class Presentation extends React.Component {
           <Text margin="40px 0 0" textSize={25} textAlign="left">
             •  Simple in both concept and implementation
           </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Uses familiar flow control constructs
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Logic is all in one place
+          </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>The problem with this approach</Heading>
-          <Text margin="40px 0 0" textSize={30} textAlign="left">
-            •  Thunks are often too coupled
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  No longer dispatching plain action objects
           </Text><br />
-          <Text margin="40px 0 0" textSize={30} textAlign="left">
+          <Text textSize={25} textAlign="left">
             •  Thunks are harder to test
           </Text><br />
-          <Text textSize={30} textAlign="left">
-            •  Mixing actions and side effects in asynchronous action creators drastically increases complexity.
+          <Text textSize={25} textAlign="left">
+            •  Mixing actions and side effects in asynchronous action creators drastically increases complexity
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  There is no clean/easy/etc way to cancel an in-progress thunk
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Redux-Saga</Heading>
-          <Heading size={7} textColor="secondary"></Heading>
-          <br /><br />
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Use of ES6 generator functions to control async flow
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Enables complex async workflows via background-thread-like "saga" functions.
+          </Text><br />
+        </Slide>
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/redux-saga.1.example")}
+          ranges={[
+            { loc: [0, 0], title: "Saga" },
+            { loc: [0, 19] },
+            { loc: [20, 21], note: "To run our code, we just need to register the saga with the middleware" }
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Benefits</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Easy to understand, easy to test
+          </Text><br />
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Excellent documentation
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Logic is all in one place
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Supports very complex operations
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>The problem with this approach</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Unit testing requires intimate knowledge of the implementation of the saga
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Debugging is difficult
+          </Text><br />
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Exercice</Heading>
+          <Heading size={3} textColor="secondary">Switch from Thunk to Saga</Heading>
+          <br />
+          <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp2">starwars-redux/tree/tp2</a></Text>
         </Slide>
       </Deck>
     );

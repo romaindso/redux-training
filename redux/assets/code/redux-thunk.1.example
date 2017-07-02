@@ -1,20 +1,17 @@
-function makeASandwich(forPerson, secretSauce) {
-  return {
-    type: 'MAKE_SANDWICH',
-    forPerson,
-    secretSauce
-  };
-}
+export const loginThunk = (username, password) => dispatch => {
 
-function makeASandwichWithSecretSauce(forPerson) {
-  // Invert control!
-  // Return a function that accepts `dispatch` so we can dispatch later.
-  // Thunk middleware knows how to turn thunk async actions into actions.
+    dispatch(loginRequest());
+    
+    postLogin(username, password).then(({ user, msg }) =>
+        dispatch(loginSuccess(user));
+        setTimeout(() => {
+            dispatch(showMessage(msg));
+        }, 2000);
+    }, err => {
+        dispatch(loginFailure(err));
+    });
 
-  return function (dispatch) {
-    return fetchSecretSauce().then(
-      sauce => dispatch(makeASandwich(forPerson, sauce)),
-      error => dispatch(apologize('The Sandwich Shop', forPerson, error))
-    );
-  };
-}
+};
+
+dispatch(loginThunk(username, password));
+

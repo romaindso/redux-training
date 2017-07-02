@@ -1,0 +1,21 @@
+function* loginSaga() {
+    while (true) {
+        // Sleep until a login request action happens
+        const action = yield take(LOGIN_REQUEST);
+        const { username, password } = action.payload;
+        try {
+            // Login. The actual call is carried out by the middleware
+            const result = yield call(postLogin, username, password);
+            const { user, msg } = result;
+            yield put(loginSuccess(user));
+            // Wait a bit and show the message
+            yield call(delay, 2000);
+            yield put(showMessage(msg));
+        }
+        catch (err) {
+            yield put(loginFailure(err));
+        }
+    }
+}
+
+sagaMiddleware.run(loginSaga);
