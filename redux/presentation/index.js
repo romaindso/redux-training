@@ -437,7 +437,7 @@ export default class Presentation extends React.Component {
           <Heading size={6} textColor="primary" caps>Exercice</Heading>
           <Heading size={3} textColor="secondary">Switch from Thunk to Saga</Heading>
           <br />
-          <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp2">starwars-redux/tree/tp2</a></Text>
+          <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp5">starwars-redux/tree/tp5</a></Text>
         </Slide>
       </Deck>
     );
