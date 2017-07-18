@@ -409,12 +409,85 @@ export default class Presentation extends React.Component {
             { loc: [20, 21], note: "To run our code, we just need to register the saga with the middleware" }
           ]}
         />
+        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+          <BlockQuote>
+            <Quote>
+              <Text textColor="primary" textSize={30}>
+                The mental model is that a saga is like a separate thread in your application that's solely 
+                responsible for side effects.<br /><br />
+                
+                Redux-saga is a redux middleware, which means this thread can be 
+                started, paused and cancelled from the main application with normal redux actions, it has access 
+                to the full redux application state and it can dispatch redux actions as well.
+              </Text>
+            </Quote>
+            <Cite>Redux-Saga - official documentation</Cite>
+          </BlockQuote>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Built on top of Generators</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Generators may be paused in the middle, one or many times, and resumed later, allowing other code to run during these paused periods
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Nothing can pause a generator from the outside; it pauses itself when it comes across a <S type="italic">yield</S>
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Once a generator has <S type="italic">yield</S>-paused itself, it cannot resume on its own. An external control must be used to restart the generator
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Enables 2-way message passing into and out of the generator, as it progresses. 
+            You send messages out with each <S type="italic">yield</S>, and you send messages back in with each restart.
+          </Text>
+        </Slide>
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/generators1.example")}
+          ranges={[
+            { loc: [0, 6] },
+            { loc: [7, 9] },
+            { loc: [10, 15] }
+          ]}
+        />
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/generators2.example")}
+          ranges={[
+            { loc: [0, 12] },
+            { loc: [0, 13] }
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>redux-saga/effects</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Put
+          </Text>
+          <Text textSize={25} textAlign="left">
+            Easy to understand, easy to test
+          </Text><br />
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Call
+          </Text>
+          <Text textSize={25} textAlign="left">
+            Easy to understand, easy to test
+          </Text><br />
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Take, TakeLast, TakeEvery
+          </Text>
+          <Text textSize={25} textAlign="left">
+            Easy to understand, easy to test
+          </Text><br />
+        </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Benefits</Heading>
           <Text margin="40px 0 0" textSize={25} textAlign="left">
             •  Easy to understand, easy to test
           </Text><br />
-          <Text margin="40px 0 0" textSize={25} textAlign="left">
+          <Text textSize={25} textAlign="left">
             •  Excellent documentation
           </Text><br />
           <Text textSize={25} textAlign="left">
@@ -438,6 +511,12 @@ export default class Presentation extends React.Component {
           <Heading size={3} textColor="secondary">Switch from Thunk to Saga</Heading>
           <br />
           <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp5">starwars-redux/tree/tp5</a></Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Links</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  The Basics Of ES6 Generators <a href="https://davidwalsh.name/es6-generators">https://davidwalsh.name/es6-generators</a>
+          </Text>
         </Slide>
       </Deck>
     );
