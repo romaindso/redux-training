@@ -1,0 +1,21 @@
+// Fork
+function* loginFlow() {
+  while (true) {
+    const {user, password} = yield take('LOGIN_REQUEST')
+    // fork return a Task object
+    const task = yield fork(authorize, user, password)
+    const action = yield take(['LOGOUT', 'LOGIN_ERROR'])
+    if (action.type === 'LOGOUT')
+      yield cancel(task)
+    yield call(Api.clearItem, 'token')
+  }
+}
+
+// Select
+export const getCart = state => state.cart
+
+function* checkout() {
+  // query the state using the exported selector
+  const cart = yield select(getCart)
+  // ...
+}

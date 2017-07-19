@@ -1,0 +1,14 @@
+// TakeLatest
+function* watchFetchProducts() {
+  yield takeEvery('PRODUCTS_REQUESTED', fetchProducts)
+}
+
+// Take
+function* loginFlow() {
+  while (true) {
+    yield take('LOGIN')
+    // ... perform the login logic
+    yield take('LOGOUT')
+    // ... perform the logout logic
+  }
+}

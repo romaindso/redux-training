@@ -402,7 +402,7 @@ export default class Presentation extends React.Component {
           textSize={20}
           transition={[]}
           lang="js"
-          code={require("raw-loader!../assets/code/redux-saga.1.example")}
+          code={require("raw-loader!../assets/code/redux-saga1.example")}
           ranges={[
             { loc: [0, 0], title: "Saga" },
             { loc: [0, 19] },
@@ -446,7 +446,7 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require("raw-loader!../assets/code/generators1.example")}
           ranges={[
-            { loc: [0, 6] },
+            { loc: [0, 6], title: "Syntax"  },
             { loc: [7, 9] },
             { loc: [10, 15] }
           ]}
@@ -457,31 +457,74 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require("raw-loader!../assets/code/generators2.example")}
           ranges={[
-            { loc: [0, 12] },
-            { loc: [0, 13] }
+            { loc: [0, 12], title: "Exercice" },
+            { loc: [0, 10], note: "Guess the return value ?" },
+            { loc: [9, 10], note: "{ value:6, done:false }" },
+            { loc: [0, 11], note: "Guess the return value ?" },
+            { loc: [10, 11], note: "{ value:8, done:false }" },
+            { loc: [0, 12], note: "Guess the return value ?" },
+            { loc: [11, 12], note: "{ value:42, done:true }" }
           ]}
         />
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>redux-saga/effects</Heading>
           <Text margin="40px 0 0" textSize={25} textAlign="left">
-            •  Put
-          </Text>
-          <Text textSize={25} textAlign="left">
-            Easy to understand, easy to test
+            To express the Saga logic we yield plain JavaScript Objects from the Generator. We call those objects <S type="italic">Effects</S>. 
           </Text><br />
-          <Text margin="40px 0 0" textSize={25} textAlign="left">
-            •  Call
-          </Text>
           <Text textSize={25} textAlign="left">
-            Easy to understand, easy to test
+            An <S type="italic">Effects</S> is simply an object which contains some information to be interpreted by the middleware. 
           </Text><br />
-          <Text margin="40px 0 0" textSize={25} textAlign="left">
-            •  Take, TakeLast, TakeEvery
-          </Text>
           <Text textSize={25} textAlign="left">
-            Easy to understand, easy to test
+            You can view <S type="italic">Effects</S> like instructions to the middleware to perform some operation (invoke some asynchronous function, dispatch an action to the store).
           </Text><br />
+          <Text textSize={25} textAlign="left">
+            This way, when testing the Generator, all we need to do is to check that it yields the expected instruction by doing a simple deepEqual on the yielded Object.
+          </Text>
         </Slide>
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/redux-saga2.example")}
+          ranges={[
+            { loc: [0, 5], note: "Creates an Effect description that instructs the middleware to call the function fn with args as arguments"},
+            { loc: [6, 12], note: "Creates an Effect description that instructs the middleware to dispatch an action to the Store"},
+          ]}
+        />
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/redux-saga3.example")}
+          ranges={[
+            { 
+              loc: [0, 4], 
+              note: `Each time an action which matches pattern is dispatched to the store, takeLatest starts a 
+              new saga task in the background. If a saga task was started previously, and if this task is still running, 
+              the task will be cancelled`
+            },
+            { loc: [5, 14], 
+              note: `Creates an Effect description that instructs the middleware to wait for a specified 
+              action on the Store. The Generator is suspended until an action that matches pattern is dispatched.`
+            }
+          ]}
+        />
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/redux-saga4.example")}
+          ranges={[
+            { 
+              loc: [0, 12], 
+              note: `Creates an Effect description that instructs the middleware to perform a non-blocking call on fn`
+            },
+            { loc: [13, 21], 
+              note: `Creates an effect that instructs the middleware to invoke the provided selector on the current 
+              Store's state (i.e. returns the result of selector(getState(), ...args))`
+            }
+          ]}
+        />
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Benefits</Heading>
           <Text margin="40px 0 0" textSize={25} textAlign="left">
@@ -516,6 +559,9 @@ export default class Presentation extends React.Component {
           <Heading size={6} textColor="primary" caps>Links</Heading>
           <Text margin="40px 0 0" textSize={25} textAlign="left">
             •  The Basics Of ES6 Generators <a href="https://davidwalsh.name/es6-generators">https://davidwalsh.name/es6-generators</a>
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Redux Saga <a href="https://redux-saga.js.org/">https://redux-saga.js.org/</a>
           </Text>
         </Slide>
       </Deck>
