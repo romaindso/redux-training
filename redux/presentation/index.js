@@ -64,6 +64,24 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Summary</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="center">
+            Core Concepts
+          </Text><br />
+          <Text textSize={25} textAlign="center">
+            The Selector pattern
+          </Text><br />
+          <Text textSize={25} textAlign="center">
+            Normalizing State Shape
+          </Text><br />
+          <Text textSize={25} textAlign="center">
+            Middleware
+          </Text><br />
+          <Text textSize={25} textAlign="center">
+            Side Effects
+          </Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Why ?</Heading>
           <Heading size={3} textColor="secondary">From scripting to SPA</Heading>
           <List Fill>
@@ -85,7 +103,7 @@ export default class Presentation extends React.Component {
           <Heading size={4} textColor="primary" caps>Single source of truth</Heading>
           <Heading size={7} textColor="secondary">The state of your whole application is stored in an object tree within a single store.</Heading>
           <br /><br />
-          <CodePane lang="javascript" source={require("raw-loader!../assets/code/core-store1.example")} textSize={20} />
+          <CodePane lang="javascript" source={require("raw-loader!../assets/code/core-store1.example")} textSize={16} />
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>State is read-only</Heading>
@@ -123,10 +141,7 @@ export default class Presentation extends React.Component {
           <iframe src="http://localhost:3000" height={600} width={1000} style={{backgroundColor: "white"}}/>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary" textColor="primary">
-          <Heading textColor="secondary" caps>Advanced Redux</Heading>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>The Selector pattern</Heading>
+          <Heading textColor="secondary" caps>The Selector pattern</Heading>
         </Slide>
         <CodeSlide
           textSize={25}
@@ -183,8 +198,8 @@ export default class Presentation extends React.Component {
           <br />
           <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp1">starwars-redux/tree/tp1</a></Text>
         </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Normalizing State Shape</Heading>
+        <Slide transition={["fade"]} bgColor="tertiary" textColor="primary">
+          <Heading textColor="secondary" caps>Normalizing State Shape</Heading>
         </Slide>
         <CodeSlide
           textSize={15}
@@ -320,8 +335,8 @@ export default class Presentation extends React.Component {
           <br />
           <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp3">starwars-redux/tree/tp3</a></Text>
         </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Middleware</Heading>
+        <Slide transition={["fade"]} bgColor="tertiary" textColor="primary">
+          <Heading textColor="secondary" caps>Middleware</Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Middleware</Heading>
@@ -349,8 +364,8 @@ export default class Presentation extends React.Component {
             { loc: [8, 16] }
           ]}
         />
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Side Effects</Heading>
+        <Slide transition={["fade"]} bgColor="tertiary" textColor="primary">
+          <Heading textColor="secondary" caps>Side Effects</Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Managing Side Effects</Heading>
@@ -587,6 +602,9 @@ export default class Presentation extends React.Component {
         <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>Links</Heading>
           <Text margin="40px 0 0" textSize={25} textAlign="left">
+            •  Redux <a href="http://redux.js.org/">http://redux.js.org/</a>
+          </Text><br />
+          <Text textSize={25} textAlign="left">
             •  The Basics Of ES6 Generators <a href="https://davidwalsh.name/es6-generators">https://davidwalsh.name/es6-generators</a>
           </Text><br />
           <Text textSize={25} textAlign="left">
