@@ -321,6 +321,35 @@ export default class Presentation extends React.Component {
           <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp3">starwars-redux/tree/tp3</a></Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={4} textColor="primary" caps>Middleware</Heading>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Middleware</Heading>
+          <Text margin="40px 0 0" textSize={25} textAlign="left">
+            Redux middleware solves different problems than Express middleware, but in a conceptually similar way
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            Redux middlewares are used for logging, crash reporting, talking to an asynchronous API, routing, and more
+          </Text>
+        </Slide>
+        <CodeSlide
+          textSize={20}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/middleware1.example")}
+          ranges={[
+            { loc: [0, 7],
+              note: `Middleware takes the next() dispatch function, and returns a dispatch function, which 
+              serves as next() to the middleware to the left, and so on. Store stays available as the top-level 
+              argument so we have access to some store methods like getState()`
+            },
+            { loc: [8, 16] }
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="tertiary">
           <Heading size={4} textColor="primary" caps>Side Effects</Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
