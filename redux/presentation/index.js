@@ -198,6 +198,71 @@ export default class Presentation extends React.Component {
           <br />
           <Text><a href="https://github.com/romaindso/starwars-redux/tree/tp1">starwars-redux/tree/tp1</a></Text>
         </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={6} textColor="primary" caps>Reselect</Heading>
+          <Heading size={3} textColor="secondary">Selector library for Redux</Heading>
+          <Text margin="40px 0 0" textSize={30} textAlign="left">
+            •  Selectors can compute derived data, allowing Redux to store the minimal possible state
+          </Text><br />
+          <Text textSize={30} textAlign="left">
+            •  Selectors are efficient. A selector is not recomputed unless one of its arguments change
+          </Text><br />
+          <Text textSize={30} textAlign="left">
+            •  Selectors are composable. They can be used as input to other selectors
+          </Text>
+        </Slide>
+        <CodeSlide
+          textSize={17}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/selector-pattern3.example")}
+          ranges={[
+            { loc: [0, 0], title: "Without Reselect" },
+            { loc: [0, 35]},
+            { 
+              loc: [0, 35], 
+              note: `In the above example, mapStateToProps calls getVisibleTodos to calculate todos. 
+              This works great, but there is a drawback: todos is calculated every time the component 
+              is updated. If the state tree is large, or the calculation expensive, repeating the 
+              calculation on every update may cause performance problems.`
+            }
+          ]}
+        />
+        <CodeSlide
+          textSize={18}
+          transition={[]}
+          lang="js"
+          code={require("raw-loader!../assets/code/selector-pattern4.example")}
+          ranges={[
+            { loc: [0, 0], title: "With Reselect" },
+            { loc: [0, 18]},
+            { 
+              loc: [0, 1], 
+              note: `Reselect provides a function createSelector for creating memoized selectors.
+              createSelector takes an array of input-selectors and a transform function as its arguments`
+            },
+            { 
+              loc: [2, 4], 
+              note: `In the example above, getVisibilityFilter and getTodos are input-selectors. 
+              They are created as ordinary non-memoized selector functions because they do not 
+              transform the data they select`
+            },
+            { 
+              loc: [5, 18], 
+              note: `getVisibleTodos on the other hand is a memoized selector. It takes 
+              getVisibilityFilter and getTodos as input-selectors, and a transform function 
+              that calculates the filtered todos list`
+            },
+            { 
+              loc: [0, 18],
+              note: `If the Redux state tree is mutated in a way that causes the value of an 
+              input-selector to change, the selector will call its transform function with the 
+              values of the input-selectors as arguments and return the result. If the values 
+              of the input-selectors are the same as the previous call to the selector, it will 
+              return the previously computed value instead of calling the transform function.`
+            }
+          ]}
+        />
         <Slide transition={["fade"]} bgColor="tertiary" textColor="primary">
           <Heading textColor="secondary" caps>Normalizing State Shape</Heading>
         </Slide>
@@ -351,7 +416,7 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
         <CodeSlide
-          textSize={20}
+          textSize={24}
           transition={[]}
           lang="js"
           code={require("raw-loader!../assets/code/middleware1.example")}
@@ -361,7 +426,7 @@ export default class Presentation extends React.Component {
               serves as next() to the middleware to the left, and so on. Store stays available as the top-level 
               argument so we have access to some store methods like getState()`
             },
-            { loc: [8, 16] }
+            { loc: [8, 20] }
           ]}
         />
         <Slide transition={["fade"]} bgColor="tertiary" textColor="primary">
@@ -603,6 +668,9 @@ export default class Presentation extends React.Component {
           <Heading size={6} textColor="primary" caps>Links</Heading>
           <Text margin="40px 0 0" textSize={25} textAlign="left">
             •  Redux <a href="http://redux.js.org/">http://redux.js.org/</a>
+          </Text><br />
+          <Text textSize={25} textAlign="left">
+            •  Reselect <a href="https://github.com/reactjs/reselect">https://github.com/reactjs/reselect</a>
           </Text><br />
           <Text textSize={25} textAlign="left">
             •  The Basics Of ES6 Generators <a href="https://davidwalsh.name/es6-generators">https://davidwalsh.name/es6-generators</a>

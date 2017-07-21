@@ -7,7 +7,11 @@ const logger = store => next => action => {
 }
 
 // Apply middlewares on redux store
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { 
+  createStore, 
+  combineReducers, 
+  applyMiddleware 
+} from 'redux'
 
 let reducers = combineReducers(rootReducer)
 let store = createStore(
