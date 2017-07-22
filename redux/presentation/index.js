@@ -329,9 +329,6 @@ export default class Presentation extends React.Component {
             •  The reducer logic doesn't have to deal with deep levels of nesting, so it will be much simpler
           </Text><br />
           <Text textSize={25} textAlign="left">
-              • Any references to individual items should be done by storing the item's ID
-          </Text><br />
-          <Text textSize={25} textAlign="left">
               • The logic for retrieving/updating a given item is now simple and consistent. Given an item's type and its ID, we can directly look it up, without having to dig through other objects to find it
           </Text><br />
           <Text textSize={25} textAlign="left">
