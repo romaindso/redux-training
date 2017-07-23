@@ -1,21 +1,42 @@
-# Spectacle Boilerplate
+# Redux training
+## Summary
+- Core Concepts
+- The Selector pattern
+- Normalizing State Shape
+- Middleware
+- Side Effects
 
-## Reference
+Exercices are available on the following repo into `tp-*` branches https://github.com/romaindso/starwars-redux
 
+## Spectacle
+
+### Reference
 The Spectacle core API is available at [https://github.com/FormidableLabs/spectacle/blob/master/README.markdown](https://github.com/FormidableLabs/spectacle/blob/master/README.markdown).
 
-## Development
+### Presenting
 
-After downloading the boilerplate, your first order of business is to open terminal and run `yarn`. (or `npm install` if you're about that life)
+To present:
 
-Next, run `rm -R .git` to remove the existing version control.
+- Run `npm start`
+- Open two browser windows on two different screens
+- On your screen visit [http://localhost:3000/](http://localhost:3000/). You will be redirected to a URL containing the slide id.
+- Add `presenter&` or `presenter&timer` immediately after the questionmark, e.g.: [http://localhost:3000/#/0?presenter](http://localhost:3000/#/0?presenter) or [http://localhost:3000/#/0?presenter&timer](http://localhost:3000/#/?presenter&timer&_k=wbyhif)
+- On the presentation screen visit [http://localhost:3000/](http://localhost:3000/)
+- Give an amazingly stylish presentation
 
-Then, to start up the local server, run `npm start`
+_Note: Any windows/tabs in the same browser that are running Spectacle will sync to one another, even if you don't want to use presentation mode_
 
-Open a browser and hit [http://localhost:3000](http://localhost:3000), and we are ready to roll
+You can toggle the presenter or overview mode by pressing respectively `alt+p` and `alt+o`.
 
-## Build & Deployment
+<a name="controls"></a>
+## Controls
 
-Building the dist version of the project is as easy as running `npm run build`
-
-If you want to deploy the slideshow to surge, run `npm run deploy`
+|Key Combination|Function|
+|---|---|
+|Right Arrow|Next Slide|
+|Left Arrow|Previous Slide|
+|Space|Next Slide|
+|Shift+Space|Previous Slide|
+|Alt/Option + O|Toggle Overview Mode|
+|Alt/Option + P|Toggle Presenter Mode|
+|Alt/Option + T|Toggle Timer in Presenter Mode|
