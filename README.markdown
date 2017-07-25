@@ -6,6 +6,7 @@
 - Middleware
 - Side Effects
 
+Slides here => https://romaindso.github.io/redux-training/
 Exercices are available on the following repo into `tp-*` branches https://github.com/romaindso/starwars-redux
 
 ## Spectacle
